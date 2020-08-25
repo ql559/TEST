@@ -70,3 +70,40 @@ class Solution:
         else:
             return max(self.helper(s1, s2, i + 1, j), self.helper(s1, s2, i, j + 1))
             
+## 08/24 Citadel OA (in OA word file)            
+
+## 08/25
+### 20. Valid Parentheses [E]
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        dic = {']':'[', ')':'(', '}':'{'}
+        for char in s:
+            if char in dic.values():
+                stack.append(char)
+            elif char in dic:
+                if not stack or stack.pop() != dic[char]:
+                    return False
+            else:
+                return False
+        return len(stack) == 0
+        
+### 32. Longest Valid Parentheses [H]
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        stack = [0]
+        res = 0
+        for c in s:
+            if c == '(':
+                stack.append(0)
+            else:
+                if len(stack) > 1:
+                    val = stack.pop()
+                    stack[-1] += val + 2
+                    res = max(res, stack[-1])
+                else:
+                    stack = [0]
+        return res
+
+
+### 
