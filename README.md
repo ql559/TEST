@@ -88,7 +88,7 @@ class Solution:
                 return False
         return len(stack) == 0
         
-### 32. Longest Valid Parentheses [H]
+### 32. Longest Valid Parentheses [H]  Akuna Capital 面经
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
         stack = [0]
