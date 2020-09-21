@@ -107,3 +107,35 @@ class Solution:
 
 
 ### 
+
+## 09/21 微软面经
+### 230. Kth Smallest Element in a BST
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        #recursive:
+        self.k = k
+        self.res = None
+        self.dfs(root)
+        return self.res
+        
+    def dfs(self, root):
+        if not root:
+            return 
+        self.dfs(root.left)
+        self.k -= 1
+        if self.k == 0:
+            self.res = root.val
+            return
+        self.dfs(root.right)
+        
+        #Iterative:
+        stack = []
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            cur = stack.pop()
+            k -= 1
+            if k == 0:
+                return cur.val
+            root = cur.right
